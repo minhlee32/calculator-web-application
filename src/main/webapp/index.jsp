@@ -39,7 +39,7 @@
   </head>
   <body>
   <h2>Simple Calculator</h2>
-  <form>
+  <form method="post" action="/calculate">
     <fieldset>
       <legend>Calculator</legend>
       <table>

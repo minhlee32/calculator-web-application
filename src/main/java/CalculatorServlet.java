@@ -2,7 +2,7 @@ import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "CalculatorServlet")
+@WebServlet(name = "CalculatorServlet",urlPatterns = "/calculate")
 public class CalculatorServlet extends javax.servlet.http.HttpServlet {
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         float firstOperand = Integer.parseInt(request.getParameter("first-operand"));
@@ -14,8 +14,13 @@ public class CalculatorServlet extends javax.servlet.http.HttpServlet {
         writer.println("<h1>Result:<h1>");
 
         try {
-            float result =
+            float result = Calculate.calculate(firstOperand, secondOperand, operator);
+            writer.println(firstOperand + " " + operator + secondOperand + "=" + result);
+        } catch (Exception e) {
+            writer.print("Error: " + e.getMessage());
+
         }
+        writer.println("</html>");
     }
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
